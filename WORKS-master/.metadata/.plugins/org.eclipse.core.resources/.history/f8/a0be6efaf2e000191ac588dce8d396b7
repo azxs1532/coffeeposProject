@@ -1,0 +1,242 @@
+package orange;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+
+public class JPG extends JFrame implements ActionListener{
+	String[] tab = {"이름","주문내역","금액"};
+	Object ta[][] = {{"세글자","주문 뭐했는지","50000원"}};
+	Image[] images = new Image[10];
+	String coffee[]= {"아메리카노","카페라떼","딸기스무디","망고스무디","고구마라떼","핫초코","프라프치노","그린티","버블티","블랙티"};
+	JPanel tpa[] = new JPanel[10];
+	JButton btn[] = new JButton[10];
+	JLabel menu[] = new JLabel[10];
+	
+	JPanel toppanel = new JPanel(new GridLayout(1,5));
+	
+	JPanel botpa1 = new JPanel();
+	JPanel botpa2 = new JPanel();
+	JPanel botpa3 = new JPanel();
+	JPanel botpa4 = new JPanel();
+	JPanel botpa5 = new JPanel();
+	JPanel botpa6 = new JPanel();
+	JPanel botpa7 = new JPanel();
+	JPanel botpanel1 = new JPanel(new GridLayout(1,2));
+	DefaultTableModel model = new DefaultTableModel(ta,tab);
+	JTable table = new JTable(model);
+	JScrollPane sp = new JScrollPane(table);
+	
+	JCheckBox check[] = new JCheckBox[10];
+	
+	
+	JLabel namelb = new JLabel("이름 :");
+	JLabel phonlb = new JLabel("번호 :");
+	JLabel money = new JLabel("금액 :");
+	JLabel count = new JLabel("");
+	JTextField name = new JTextField(10);
+	JTextField phone = new JTextField(10);
+	
+	String comb[] = {"커피","라면","음식"};
+	JButton order = new JButton("주문");
+	JButton cancel = new JButton("취소");
+	JButton managermode = new JButton("관리자모드");
+	JComboBox<String> combo = new JComboBox<String>(comb);
+	int sum =0; //가격 총합
+	
+	//jtable 이름, 전화번호, 주문내역, 가격
+	public JPG() {
+		
+		setTitle("스따박수");
+		setBounds(1000,50,920,900);
+		setLayout(new GridLayout(2,1));
+		
+		toppanel.setLayout(new GridLayout(2,5));
+		for(int i=0;i<10;i++) {
+			tpa[i] = new JPanel();
+			String filename = "./src/image/"+(i+1)+".jpg";
+			images[i] = Toolkit.getDefaultToolkit().getImage(filename);
+			tpa[i].add(btn[i] = new JButton(new ImageIcon(images[i])));
+			tpa[i].add(menu[i]= new JLabel(""+coffee[i]));
+			btn[i].setPreferredSize(new Dimension(180,180));
+			toppanel.add(tpa[i]);
+			btn[i].setName(coffee[i]);
+			btn[i].addActionListener(this);
+		}
+		
+		botpa1.setBackground(Color.pink);
+		botpa2.setBackground(Color.orange);
+		
+		table.getColumnModel().getColumn(1).setPreferredWidth(300);
+		
+		botpa1.add(sp);
+		
+		botpa2.setLayout(new GridLayout(2,1));
+		
+		botpa4.setLayout(new BorderLayout());
+		
+		botpa4.add(namelb);
+		botpa4.add(name);
+		botpa4.add(phonlb);
+		botpa4.add(phone);
+		
+		order.setPreferredSize(new Dimension(150,70));
+		cancel.setPreferredSize(new Dimension(150,70));
+		
+		botpa6.add(namelb);
+		botpa6.add(name);
+		botpa6.add(phonlb);
+		botpa6.add(phone);
+		
+		botpa7.add(money);
+		botpa7.add(count);
+		
+		botpa5.add(order);
+		botpa5.add(cancel);
+		botpa5.add(managermode);
+		
+		botpa3.add(combo);
+		botpa2.add(botpa3); botpa3.setBackground(Color.white);
+		botpa2.add(botpa4); botpa4.setBackground(Color.green);
+		
+		botpa4.add(botpa6,BorderLayout.NORTH);
+		botpa4.add(botpa7, BorderLayout.CENTER);
+		botpa4.add(botpa5,BorderLayout.SOUTH);
+		botpanel1.add(botpa1);
+		botpanel1.add(botpa2);
+		
+		combo.addActionListener(this);
+		order.addActionListener(this);
+		cancel.addActionListener(this);
+		managermode.addActionListener(this);
+		
+		add(toppanel);
+		add(botpanel1);
+		
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	public static void main(String[] args) {
+		new JPG();
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String namel = "", phonel = "";
+		String input[] = new String[3];
+		Object ob = e.getSource();
+		JButton btn = (JButton)ob;
+		System.out.println(btn.getName());
+		if(btn.getName()!=null) {
+			switch (btn.getName()) {
+			case "아메리카노":
+				sum += 3000;
+				System.out.println("아으아아으ㅏ");
+				break;
+			case "카페라떼":
+				sum += 3000;
+				break;
+			case "딸기스무디":
+				sum += 3000;
+				break;
+			case "망고스무디":
+				sum += 3000;
+				break;
+			case "고구마라떼":
+				sum += 3000;
+				break;
+			case "핫초코":
+				sum += 3000;
+				break;
+			case "프라프치노":
+				sum += 3000;
+				break;
+			case "그린티":
+				sum += 3000;
+				break;
+			case "버블티":
+				sum += 3000;
+				break;
+			case "블랙티":
+				sum += 3000;
+				break;
+			}
+		}else {
+			switch (e.getActionCommand()) {
+			
+			case "주문":
+				orderVO ordervo = new orderVO();
+				namel = name.getText().trim();
+				phonel = phone.getText().trim();
+				System.out.println("주문");
+				
+				ordervo.setName(namel);
+				ordervo.setPhone(phonel);
+				ordervo.setMoney(sum);
+				
+				input[0] = namel;
+				input[1] = phonel;
+				input[2] = String.valueOf(sum);
+				
+				OrderDAO.insert(ordervo);
+				
+				model.addRow(input);
+				
+				break;
+			case "취소":
+				System.out.println("취소");
+				sum = 0;
+				name.setText("");
+				phone.setText("");
+				break;
+				}
+			}
+		money.setText("금액 : "+sum+"원");
+		System.out.println(sum);
+		
+			
+	}
+	private void view() {
+		ArrayList<orderVO> list = OrderDAO.select();
+		
+		model.setNumRows(0); //model rows 초기화 시키기
+		
+		
+		if(list.size()==0) {
+			System.out.println("테이블에 저장된 글이 없습니다.");
+		}else {
+			for(orderVO vo1 : list) {
+				String[] rows = new String[3];
+				rows[0] = vo1.getName();
+				rows[1] = vo1.getPhone();
+				rows[2] = String.valueOf(vo1.money);
+				model.addRow(rows);
+			}
+		}
+	}
+}

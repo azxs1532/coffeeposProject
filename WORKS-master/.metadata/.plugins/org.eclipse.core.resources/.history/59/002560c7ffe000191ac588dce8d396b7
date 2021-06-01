@@ -1,0 +1,47 @@
+package orange;
+
+public class orderVO {
+	private String name;
+	private String phone;
+	private int money;
+	private String shot;
+	private String hotcold;
+	private String ice;
+	
+	private String getShot() {
+		return shot;
+	}
+	private void setShot(String shot) {
+		this.shot = shot;
+	}
+	private String getHotcold() {
+		return hotcold;
+	}
+	private void setHotcold(String hotcold) {
+		this.hotcold = hotcold;
+	}
+	private String getIce() {
+		return ice;
+	}
+	private void setIce(String ice) {
+		this.ice = ice;
+	}
+	private String getName() {
+		return name;
+	}
+	private void setName(String name) {
+		this.name = name;
+	}
+	private String getPhone() {
+		return phone;
+	}
+	private void setPhone(String phone) {
+		this.phone = phone;
+	}
+	private int getMoney() {
+		return money;
+	}
+	private void setMoney(int money) {
+		this.money = money;
+	}
+}

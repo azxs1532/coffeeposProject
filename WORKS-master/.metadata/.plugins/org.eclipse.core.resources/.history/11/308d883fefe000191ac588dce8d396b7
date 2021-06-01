@@ -1,0 +1,68 @@
+package orange;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class OrderDAO {
+	static Connection conn = null;
+	static PreparedStatement pstmt = null;
+	static ResultSet rs = null;
+
+	public static ArrayList<orderVO> select() {
+		ArrayList<orderVO> list = null;
+		try {
+			conn = jpgDB.getMySQLConnection();
+			String sql = "select * from jpglist";
+			pstmt = conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			list = new ArrayList<orderVO>();
+			while(rs.next()) {//rs.next() = ResultSet 객체에 다음 데이터가 있나?
+				orderVO vo = new orderVO();
+				vo.setName(rs.getString("name"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setMoney(rs.getInt("money"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+		}
+		jpgDB.close(conn);
+		jpgDB.close(pstmt);
+		jpgDB.close(rs);
+		return list;
+	}
+
+	public static void insert(orderVO ordervo) {
+		boolean flag = true;
+		if(ordervo.getName().length()==0) {
+			JOptionPane.showMessageDialog(null, "이름이 입력되지 않았습니다.");
+			flag = false;
+		}else if(ordervo.getPhone().length()==0) {
+			JOptionPane.showMessageDialog(null, "이름이 입력되지 않았습니다.");
+			flag = false;
+		}
+		if(flag) {
+			try {
+			conn = jpgDB.getMySQLConnection();
+			String sql = "INSERT INTO jpglist(name, phone, money) values (?,?,?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ordervo.getName());
+			pstmt.setString(2, ordervo.getPhone());
+			pstmt.setInt(3, ordervo.getMoney());
+			
+			pstmt.executeUpdate();
+			JOptionPane.showMessageDialog(null, "입력 성공");
+			jpgDB.close(conn);
+			jpgDB.close(pstmt);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	
+}

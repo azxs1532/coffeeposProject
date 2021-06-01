@@ -1,0 +1,55 @@
+package orange;
+
+import java.util.Date;
+
+public class reviewVO {
+	private int idx;
+	private String name;
+	private String phonenumber;
+	private String star;
+	private String memo;
+	private Date writeDate;
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+	public String getMemo() {
+		return memo;
+	}
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+	public Date getWriteDate() {
+		return writeDate;
+	}
+	public void setWriteDate(Date writeDate) {
+		this.writeDate = writeDate;
+	}
+	public String getStar() {
+		return star;
+	}
+	public void setStar(String star) {
+		this.star = star;
+	}
+	@Override
+	public String toString() {
+		return "reviewVO [idx=" + idx + ", name=" + name + ", phonenumber=" + phonenumber + ", star=" + star + ", memo="
+				+ memo + ", writeDate=" + writeDate + "]";
+	}
+	
+	
+}

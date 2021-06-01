@@ -1,0 +1,103 @@
+package orange;
+
+import java.awt.Choice;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class sideMenuUI2 extends JFrame implements ActionListener{
+	
+	JPanel panel = new JPanel();
+	Choice comboBox;
+	Choice comboBox2;
+	Choice comboBox3;
+	Choice comboBox4;
+	JLabel mainLabel;
+	JLabel hotLabel;
+	JLabel shotLabel;
+	JButton confirmButton;
+	JButton cancelButton;
+	String comboBoxStr;
+	
+	public sideMenuUI2() {
+		setTitle("음료 옵션");
+		setBounds(400, 200, 600, 550);
+		setLayout(null);
+		
+		mainLabel = new JLabel("<<음료 옵션>>");
+		mainLabel.setFont(new Font("D2coding",Font.BOLD,40));
+		mainLabel.setAlignmentX(CENTER_ALIGNMENT);
+		mainLabel.setAlignmentY(CENTER_ALIGNMENT);
+		mainLabel.setBounds(160, 20, 400, 50);
+		add(mainLabel);
+		comboBox = new Choice();
+		comboBox2 = new Choice();
+		comboBox3 = new Choice();
+		comboBox4 = new Choice();
+		comboBox.add("HOT/ICE");
+		comboBox.add("HOT");
+		comboBox.add("ICE");
+		comboBox.setBounds(250, 100, 150, 30);
+		add(comboBox);
+		hotLabel = new JLabel("HOT / ICE >>>");
+		hotLabel.setFont(new Font("D2coding",Font.BOLD,20));
+		hotLabel.setBounds(30, 97, 150, 30);
+		add(hotLabel);
+		comboBox2.add("얼음");
+		comboBox2.add("얼음 기본");
+		comboBox2.add("얼음 적게");
+		comboBox2.add("얼음 많이");
+		comboBox2.setBounds(250, 150, 150, 30);
+		add(comboBox2);
+		JLabel iceLabel = new JLabel("얼음 >>>");
+		iceLabel.setFont(new Font("D2coding",Font.BOLD,20));
+		iceLabel.setBounds(80, 147, 150, 30);
+		add(iceLabel);
+		comboBox3.add("SHOT");
+		comboBox3.add("샷 기본");
+		comboBox3.add("샷 추가(+500)");
+		comboBox3.setBounds(250, 200, 150, 30);
+		add(comboBox3);
+		shotLabel = new JLabel("샷 추가 >>>");
+		shotLabel.setFont(new Font("D2coding",Font.BOLD,20));
+		shotLabel.setBounds(50, 197, 150, 30);
+		add(shotLabel);
+		
+		confirmButton = new JButton("확인");
+		confirmButton.setBounds(0, 390, 290, 120);
+		add(confirmButton);
+		cancelButton = new JButton("취소");
+		cancelButton.setBounds(293, 390, 290, 120);
+		add(cancelButton);
+		
+		confirmButton.addActionListener(this);
+		cancelButton.addActionListener(this);
+		
+		orderVO ordervo = new orderVO();
+		ordervo.shot = comboBox.getSelectedItem();
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		
+		sideMenuUI2 window = new sideMenuUI2();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getActionCommand().equals("확인")) {
+	
+			
+			
+		}
+		
+		
+	}
+
+}

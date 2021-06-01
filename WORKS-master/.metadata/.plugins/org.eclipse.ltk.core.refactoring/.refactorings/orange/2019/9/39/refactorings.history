@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 5 elements to &apos;orange/src/orange&apos;&#x0D;&#x0A;- Original project: &apos;orange&apos;&#x0D;&#x0A;- Destination element: &apos;orange/src/orange&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     reviewVO.java&#x0D;&#x0A;     OrderDAO.java&#x0D;&#x0A;     JPG.java&#x0D;&#x0A;     jpgDB.java&#x0D;&#x0A;     orderVO.java&#x0D;&#x0A;- Update references to refactored element" description="Move compilation units" destination="/src&lt;orange" element1="/src&lt;{reviewVO.java" element2="/src&lt;{OrderDAO.java" element3="/src&lt;{JPG.java" element4="/src&lt;{jpgDB.java" element5="/src&lt;{orderVO.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1569565377994" units="5" version="1.0"/>
+</session>
